@@ -1,5 +1,4 @@
 namespace SearchService.RequestHelpers;
-
 public class SearchParams
 {
     public string SearchTerm { get; set; }

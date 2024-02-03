@@ -1,5 +1,5 @@
-﻿namespace AuctionService.DTOs;
-public class AuctionDto
+﻿namespace Contracts;
+public class AuctionCreated
 {
     public Guid Id { get; set; }
     public int ReservePrice { get; set; }
