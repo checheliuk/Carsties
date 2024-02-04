@@ -4,7 +4,7 @@ using MassTransit;
 using MongoDB.Entities;
 using SearchService.Models;
 namespace SearchService.Consumers;
-public abstract class AuctionCreatedConsumer(IMapper mapper) : IConsumer<AuctionCreated>
+public class AuctionCreatedConsumer(IMapper mapper) : IConsumer<AuctionCreated>
 {
     public async Task Consume(ConsumeContext<AuctionCreated> context)
     {
