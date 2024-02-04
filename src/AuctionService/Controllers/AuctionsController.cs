@@ -5,6 +5,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Contracts;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,11 +41,13 @@ public class AuctionsController(
         return mapper.Map<AuctionDto>(auction);
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<AuctionDto>> CreateAuction(CreateAuctionDto auctionDto)
     {
         var auction = mapper.Map<Auction>(auctionDto);
-        auction.Seller = "test";
+
+        auction.Seller = User.Identity.Name;
         context.Auctions.Add(auction);
         var newAuction = mapper.Map<AuctionDto>(auction);
         await publishEndpoint.Publish(mapper.Map<AuctionCreated>(newAuction));
@@ -55,6 +58,7 @@ public class AuctionsController(
             mapper.Map<AuctionDto>(auction));
     }
 
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateAuction(
         Guid id, 
@@ -63,6 +67,7 @@ public class AuctionsController(
         var auction = await context.Auctions.Include(x => x.Item)
             .FirstOrDefaultAsync(x => x.Id == id);
         if (auction == null) return NotFound();
+        if (auction.Seller != User.Identity.Name) return Forbid();
         auction.Item.Make = updateAuctionDto.Make ?? auction.Item.Make;
         auction.Item.Model = updateAuctionDto.Model ?? auction.Item.Model;
         auction.Item.Color = updateAuctionDto.Color ?? auction.Item.Color;
@@ -74,11 +79,13 @@ public class AuctionsController(
         return BadRequest("Problem saving changes");
     }
 
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteAuction(Guid id)
     {
         var auction = await context.Auctions.FindAsync(id);
         if (auction is null) return NotFound();
+        if (auction.Seller != User.Identity.Name) return Forbid();
         context.Auctions.Remove(auction);
         await publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
         var result = await context.SaveChangesAsync() > 0;
