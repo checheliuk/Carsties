@@ -1,22 +1,50 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import AuctionCard from './AuctionCard';
+import AppPagination from '../components/AppPagination';
 import { Auction, PagedResult } from '@/types';
+import { getData } from '../actions/auctionActions';
+import Filters from './Filters';
+import { useParamsStore } from '../hooks/useParamsStore';
+import { shallow } from 'zustand/shallow';
+import qs from 'query-string';
 
-async function getData(): Promise<PagedResult<Auction>> {
-  const res = await fetch('http://localhost:6001/search?pageSize=10');
+export default function Listings() {
+    const [data, setData] = useState<PagedResult<Auction>>();
+    const params = useParamsStore(state => ({
+        pageNumber: state.pageNumber,
+        pageSize: state.pageSize,
+        searchTerm: state.searchTerm
+    }), shallow)
+    const setParams = useParamsStore(state => state.setParams);
+    const url = qs.stringifyUrl({url:'', query: params});
 
-  if (!res.ok) throw new Error('Failed to fetch data');
+    function setPageNumber(pageNumber: number) {
+        setParams({pageNumber});
+    }
+    
+    useEffect(() => {
+        getData(url).then(data => {
+           setData(data);
+        })
+    }, [url]);
 
-  return res.json();
-}
+    if (!data) return <h3>Loading...</h3>
 
-export default async function Listings() {
-  const data = await getData();
-  return (
-    <div className='grid grid-cols-4 gap-6'>
-      {data && data.results.map(auction => (
-        <AuctionCard auctions={auction} key={auction.id} />
-      ))}
-    </div>
-  )
+    return (
+        <>
+            <Filters  />
+            <div className='grid grid-cols-4 gap-6'>
+                {data.results.map(auction => (
+                  <AuctionCard auctions={auction} key={auction.id} />
+                ))}
+            </div>
+            <div className='flex justify-center mt-4'>
+                <AppPagination pagaChanged={setPageNumber} 
+                    currentPage={params.pageNumber} 
+                    pageCount={data.pageCount} />
+            </div>
+        </>
+    )
 }
