@@ -30,5 +30,5 @@ export const useParamsStore = create<State & Actions>()((set) => ({
             }
         })
     },
-    reset: () => {initialState}
+    reset: () => set(initialState)
 }))
