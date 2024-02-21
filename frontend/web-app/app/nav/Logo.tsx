@@ -3,13 +3,21 @@
 import React from 'react'
 import { AiOutlineCar } from 'react-icons/ai'
 import { useParamsStore } from '../hooks/useParamsStore'
+import { usePathname, useRouter } from 'next/navigation'
 
 export default function Logo() {
+    const router = useRouter();
+    const pathname = usePathname();
     const reset = useParamsStore(state => state.reset);
+
+    function doReser() {
+        if (pathname !== '/') router.push('/');
+        reset();
+    }
 
     return (
         <div 
-            onClick={reset}
+            onClick={doReser}
             className='
                 cursor-pointer
                 flex 
