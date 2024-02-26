@@ -1,8 +1,8 @@
 import React from 'react'
-import CountDownTimer from './CountDownTimer';
 import CarImage from './CarImage';
 import { Auction } from '@/types';
 import Link from 'next/link';
+import CountdownTimer from './CountdownTimer';
 
 type Props = {
     auctions: Auction
@@ -15,7 +15,7 @@ export default function AuctionCard({auctions}: Props) {
             <div>
                 <CarImage imageUrl={auctions.imageUrl} />
                 <div className='absolute bottom-2 left-2'>
-                    <CountDownTimer auctionEnd={auctions.auctionEnd} />
+                    <CountdownTimer auctionEnd={auctions.auctionEnd} />
                 </div>
             </div>
         </div>
