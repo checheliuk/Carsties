@@ -31,7 +31,7 @@ export default function Search() {
                 onChange={onChange}
                 type="text" 
                 placeholder='Search for cars by make, model or color'
-                className='flex-grow pl-5 bg-transparent border-transparent text-sm text-gray-600 focus:outline-none focus:border-transparent focus:ring-0'
+                className='input-custom text-sm text-gray-600'
             />
             <button onClick={search}>
                 <FaSearch size={34} className='bg-red-400 text-white rounded-full p-2 cursor-pointer mx-2' />
