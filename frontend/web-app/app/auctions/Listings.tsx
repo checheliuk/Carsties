@@ -6,11 +6,11 @@ import AppPagination from '../components/AppPagination';
 import { Auction, PagedResult } from '@/types';
 import { getData } from '../actions/auctionActions';
 import Filters from './Filters';
-import { useParamsStore } from '../hooks/useParamsStore';
+import { useParamsStore } from '@/hooks/useParamsStore';
 import { shallow } from 'zustand/shallow';
 import qs from 'query-string';
 import EmptyFilter from '../components/EmptyFilter';
-import { useAuctionStore } from '../hooks/useAuctionStore';
+import { useAuctionStore } from '@/hooks/useAuctionStore';
 
 export default function Listings() {
     const [loading, setLoading] = useState(true);
@@ -41,7 +41,7 @@ export default function Listings() {
            setData(data);
            setLoading(false);
         })
-    }, [url]);
+    }, [url, setData]);
 
     if (loading) return <h3>Loading...</h3>
 
