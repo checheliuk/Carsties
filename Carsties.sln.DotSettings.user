@@ -1,0 +1,19 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/sashachecheliuk/Library/Caches/JetBrains/Rider2023.3/resharper-host/temp/Rider/vAny/CoverageData/_Carsties.729821593/Snapshot/snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1d884c54_002De85c_002D4262_002Db96f_002D473f4605091b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AuctionEntityTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::7277A8A9-43A2-4FE2-84AC-13C138DB2564::net8.0::AuctionService.UnitTests.AuctionEntityTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=86d421eb_002D9c57_002D426f_002D9473_002D865e14c9c0f4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AuctionEntityTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::7277A8A9-43A2-4FE2-84AC-13C138DB2564::net8.0::AuctionService.UnitTests.AuctionEntityTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::7277A8A9-43A2-4FE2-84AC-13C138DB2564::net8.0::AuctionService.UnitTests.AuctionControllerTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e1e4a790_002Dcbb5_002D40a0_002Db2c8_002D6062b809af54/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AuctionEntityTests #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::7277A8A9-43A2-4FE2-84AC-13C138DB2564::net8.0::AuctionService.UnitTests.AuctionEntityTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::7277A8A9-43A2-4FE2-84AC-13C138DB2564::net8.0::AuctionService.UnitTests.AuctionControllerTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
