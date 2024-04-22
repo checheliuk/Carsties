@@ -49,3 +49,4 @@ app.MapGrpcService<GrpcAuctionService>();
 try { DbInitializer.InitDb(app); }
 catch (Exception e) { Console.WriteLine(e); }
 app.Run();
+public partial class Program {}

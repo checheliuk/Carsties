@@ -15,5 +15,7 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::7277A8A9-43A2-4FE2-84AC-13C138DB2564::net8.0::AuctionService.UnitTests.AuctionEntityTests&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::7277A8A9-43A2-4FE2-84AC-13C138DB2564::net8.0::AuctionService.UnitTests.AuctionControllerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::414D6C91-7E54-407C-94E9-F0D27E17A9C6::net8.0::AuctionService.IntegrationTests.AuctionControllerTests.GetAuctions_ShouldReturn3Auctions&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::414D6C91-7E54-407C-94E9-F0D27E17A9C6::net8.0::AuctionService.IntegrationTests.AuctionControllerTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
