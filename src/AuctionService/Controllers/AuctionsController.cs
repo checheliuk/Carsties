@@ -21,7 +21,7 @@ public class AuctionsController(
     public async Task<ActionResult<List<AuctionDto>>> GetAllAuctions(string date) =>
         await repo.GetAuctionsAsync(date);
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<AuctionDto>> GetAuctionById(Guid id)
     {
         var auction = await repo.GetAuctionByIdAsync(id);
