@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace AuctionService.IntegrationTests.Util;
+namespace AuctionService.IntegrationTests;
 
 public class AuthHelper
 {

@@ -1,7 +1,7 @@
 using AuctionService.Data;
 using AuctionService.Entities;
 
-namespace AuctionService.IntegrationTests.Util;
+namespace AuctionService.IntegrationTests;
 
 public static class DbHelper
 {

@@ -2,14 +2,12 @@ using System.Net;
 using System.Net.Http.Json;
 using AuctionService.Data;
 using AuctionService.DTOs;
-using AuctionService.IntegrationTests.Fixtures;
-using AuctionService.IntegrationTests.Util;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AuctionService.IntegrationTests;
 
-public class AuctionControllerTests(CustomWebAppFactory factory) 
-    : IClassFixture<CustomWebAppFactory>, IAsyncLifetime
+[Collection("Shared collection")]
+public class AuctionControllerTests(CustomWebAppFactory factory) : IAsyncLifetime
 {
     private readonly HttpClient _httpClient = factory.CreateClient();
     private const string GT_ID = "afbee524-5972-4075-8800-7d1f9d7b0a0c";
@@ -96,30 +94,43 @@ public class AuctionControllerTests(CustomWebAppFactory factory)
     public async Task CreateAuction_WithInvalidCreateAuctionDto_ShouldReturn400()
     {
         // arrange
+        var auction = GetAuctionForCreate();
+        auction.Make = null;
+        _httpClient.SetFakeJwtBearerToken(AuthHelper.GetBearerForUser("bob"));
 
         // act
+        var response = await _httpClient.PostAsJsonAsync($"api/auctions", auction);
 
         // assert
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 
     [Fact]
     public async Task UpdateAuction_WithValidUpdateDtoAndUser_ShouldReturn200()
     {
         // arrange
+        UpdateAuctionDto updateAuction = new() { Make = "Update" };
+        _httpClient.SetFakeJwtBearerToken(AuthHelper.GetBearerForUser("bob"));
 
         // act
+        var response = await _httpClient.PutAsJsonAsync($"api/auctions/{GT_ID}", updateAuction);
 
         // assert
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Fact]
     public async Task UpdateAuction_WithValidUpdateDtoAndInvalidUser_ShouldReturn403()
     {
         // arrange 
+        UpdateAuctionDto updateAuction = new() { Make = "Update" };
+        _httpClient.SetFakeJwtBearerToken(AuthHelper.GetBearerForUser("notbob"));
 
         // act
+        var response = await _httpClient.PutAsJsonAsync($"api/auctions/{GT_ID}", updateAuction);
 
         // assert
+        Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
     }
     
     public Task InitializeAsync() => Task.CompletedTask;
@@ -132,17 +143,14 @@ public class AuctionControllerTests(CustomWebAppFactory factory)
         return Task.CompletedTask;
     }
 
-    private CreateAuctionDto GetAuctionForCreate()
+    private CreateAuctionDto GetAuctionForCreate() => new()
     {
-        return new CreateAuctionDto
-        {
-            Make = "test",
-            Model = "testModel",
-            ImageUrl = "test",
-            Color = "test",
-            Mileage = 10,
-            Year = 10,
-            ReservePrice = 10
-        };
-    }
+        Make = "test",
+        Model = "testModel",
+        ImageUrl = "test",
+        Color = "test",
+        Mileage = 10,
+        Year = 10,
+        ReservePrice = 10
+    };
 }
